@@ -33,4 +33,5 @@ ledger_stock as (
 )
 
 
-select * from ledger_stock
+select * from ledger_stock;
+
