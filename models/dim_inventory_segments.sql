@@ -7,14 +7,17 @@ OR link 'service_class_snapshot_up_to_7_days' model */
 
 WITH final AS (SELECT 
         posting_date,
-        SUM(quantity) as total_quantity,
+        SUM(quantity) AS total_quantity,
         service_class,
         historic_service_class /* historic service class */
-    from {{ ref('clean_ledger')}}
+    FROM {{ ref('stg_clean_ledger')}}
 
-    left join {{ ref('service_class_snapshot_more_than_7_days')}} using (item_no_, location_code)
-    group by 1,3,4
-    order by 1,3 asc
+    LEFT JOIN {{ ref('stg_service_class_snapshot_more_than_7_days')}} 
+    
+    USING (item_no_, location_code)
+    
+    GROUP BY 1,3,4
+    ORDER BY 1,3 ASC
     )
 
 SELECT * FROM final 
