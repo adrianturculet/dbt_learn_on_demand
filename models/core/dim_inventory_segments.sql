@@ -1,6 +1,6 @@
-/* uncomment the command below if we want to create model as a table instead of view*/
+/* create model as a table instead of view*/
 
-/* {{ config(materialized='table') }} */
+ {{ config(materialized='table') }} 
 
 /* create the measure required and link 'service_class_snapshot_more_than_7_days' model 
 OR link 'service_class_snapshot_up_to_7_days' model */
